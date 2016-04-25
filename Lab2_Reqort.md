@@ -53,10 +53,10 @@ int main()
 	//...
 }
 ```
-    	我们注意到，在第一个宏定义展开后，大括号后面多了一个分号，但是这个分号并不会影响
-    程序的执行，而第二个宏定义展开后是一个完整的只循环一次代码段，那为什么还要加
-    do{...}while(0)呢？
-    我们稍微改动一下程序：
+    	我们注意到，在第一个宏定义展开后，大括号后面多了一个分号，但是这个分号并
+    不会影响程序的执行，而第二个宏定义展开后是一个完整的只循环一次代码段，那为什
+    么还要加do{...}while(0)呢？
+    	我们稍微改动一下程序：
 ```C
 int main()
 {
@@ -105,7 +105,6 @@ int main()
 	//...
 }
 ```
-
         我们可以明显看出，在第一个的宏展开里，if大括号后面的分号是无法编译过的，此时
     这个分号就不是可以忽略的因素了，但是第二个宏展开却仍然是一段没有语法错误的代码。
     通过上面这个例子，可以看出当将宏函数用于条件判断后的执行语句时要特别注意，否则可
@@ -119,9 +118,9 @@ int main()
     再本题中，即为0xC0300000。
 ### Thinking 3.3 ###
     	大体流程为现将CP0的CP0_ENTRYHI号寄存器数存进GPR[k1]，然后将GPR[a0]写进CP0_ENTRYHI
-    号寄存器，之后查询TLB，将CP0_INDEX中的数取出来，判断是否小于0，如果小于0则跳转到
-    NOFOUND，否则将CP0_ENTRYHI和CP0_ENTRYLOO置为0。
-    CP0中的INDEX号寄存器中的值决定该指令要读写的是哪一个TLB表项，当缺失的时候会置其最
+    号寄存器，之后查询TLB，将CP0_INDEX中的数取出来，判断是否小于0，如果小于0则跳转到NOFOUND，
+    否则将CP0_ENTRYHI和CP0_ENTRYLOO置为0。
+		CP0中的INDEX号寄存器中的值决定该指令要读写的是哪一个TLB表项，当缺失的时候会置其最
     高位为1，也就变成了负数。
 ## 实验难点图示 ##
 ![流程图](https://raw.githubusercontent.com/HualeiZhu/BUAA_MIPS_OS_DOC/master/Lab2.png)
@@ -160,7 +159,6 @@ if(!(*pgdir_entryp & PTE_V) && create == 1)
    *pgdir_entryp = PTE_ADDR(PADDR(pgtable)) | PTE_V;
 } 
 ```
-
         	新建页表时，首先是调用alloc按字节分配一个页面，地址保存在pgtable里，然后
         取其高20位存入一级页表项的高20位，PADDR是将虚拟地址转为物理地址，PTE_ADDR
         将低12位置0，由于其内存分配是按照页面大小进行对齐的，所以PTE_ADDR用不用都
@@ -195,7 +193,7 @@ panic at pmpa.c:147: out of memory
         是二级页表所对应的页面结构的地址，需要根据pages数组的首地址算出偏移
         量来确定其物理地址，这与上面是有所不同的。
         （3） boot_map_segment
-		 这个函数我感觉我还没有十分理解，它实现了物理地址和虚拟地址的映射关系
+			 这个函数我感觉我还没有十分理解，它实现了物理地址和虚拟地址的映射关系
         ，根据我的观察，
 ```C
 pages = (struct Page *)alloc(npage * sizeof(struct Page), BY2PG, 1);
@@ -235,8 +233,8 @@ if(page2pa(&pages[i])  <PADDR( freemem))
         在空闲的页面，
 ```C
 *pp = LIST_FIRST(&page_free_list);
-    LIST_REMOVE(*pp,pp_link);
-	bzero((void *)*pp, sizeof(struct Page));
+LIST_REMOVE(*pp,pp_link);
+bzero((void *)*pp, sizeof(struct Page));
 ```
         	对于清空这个页面，我以前写的size一直是一个页面的大小，也就是4KB，
         后来测了近一天的时间的BUG，因为在后面的page_check函数里有一个地方
