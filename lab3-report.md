@@ -73,7 +73,8 @@
 		就这次的实验来说，既然已知只有两个进程，那么计数器可以只检查envs[0]和envs[1]，可以降低由于调度方法耗费时间
 	不一致带来的不公平。	
 ### 二、实验难点图示
-
+	![env-start](https://github.com/HualeiZhu/BUAA_MIPS_OS_DOC/blob/master/lab3-env-start.jpg)
+	
 	
 
 	
