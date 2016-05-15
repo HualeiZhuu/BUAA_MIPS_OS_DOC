@@ -74,7 +74,7 @@
 	不一致带来的不公平。	
 ### 二、实验难点图示
 	下图为一个进程从创建到运行的简单过程
-	![env-start](https://raw.githubusercontent.com/HualeiZhu/BUAA_MIPS_OS_DOC/master/lab3-env-start.jpg)
+	![env-start](https://raw.githubusercontent.com/HualeiZhu/BUAA_MIPS_OS_DOC/master/lab3-env-start.png)
 	下面我分析一下进程的切换过程，看得也不太明白，只能尽力说了。
 	(1)
 		发生时钟中断之后，会引发MIPS中断，从而将PC指向0x80000080，主要执行
