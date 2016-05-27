@@ -59,6 +59,7 @@
 
         下面是这次实验的大致示意图：
         这次实验的关键点在于fork的实现
+        ![流程图](https://raw.githubusercontent.com/HualeiZhu/BUAA_MIPS_OS_DOC/master/lab4_fork.jpg)
 
 
         关于进程间通讯机制，我用文字叙述一下，函数sys_ipc_recv的作用是将当前进程设置为待接收的状态，并放弃时间片等待其他进程
